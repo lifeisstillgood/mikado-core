@@ -41,6 +41,17 @@ def read_ini(inifilepath):
     conf.read(inifilepath)
     return convert_conf_to_dict(conf)
 
+def write_ini(confd, inifilepath):
+    """Write a given inifile 
+
+    """
+    conf = configparser.ConfigParser()
+    conf['default'] = confd
+    with open(inifilepath, 'w') as fo:
+        conf.write(fo)
+    
+
+
 def convert_conf_to_dict(confobj):
     """Convert configparser object to just plain dict """
     d = {}
