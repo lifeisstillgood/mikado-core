@@ -24,8 +24,27 @@ Versions and releases
 """
 
 import docopt
+import semver
+import os
 
+def bump_version(repopath):
+    """Visit `repopath` and find a VERSION file, 
+    increase that semver by one.
+
+    """
+    versionpath = os.path.join(repopath, "VERSION")
+    try:
+        with open(versionpath) as fo:
+            ver = fo.read()
+    except:
+        print("Unable to find / open VERSION file {}".format(versionpath))
+    try:
+        nextver = semver.bump_patch(ver)
+    except ValueError:
+        print("The version in {} {} is not valid semver".format(versionpath, ver))
+        
+    print("TO bump patch use {}".format(nextver))
 
 
 if __name__ == '__main__':
-    run()
+    bump_version("/var/projects/mikado-core")
