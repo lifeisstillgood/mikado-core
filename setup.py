@@ -11,8 +11,8 @@ setup(
      name='mikado-core',
      version=version,
      description='Core files for Mikado Software OSS projects',
-     author='author',
+     author='paul@mikadosoftware.com',
      packages=find_packages(exclude=('tests')),
      # Any scripts (i.e. python/bash) found here will be added to PATH
-     scripts=glob.glob('scripts/*')
+     scripts=glob.glob('bin/*')
 )
