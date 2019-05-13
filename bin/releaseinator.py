@@ -20,12 +20,19 @@ Versions and releases
 [ ] generate release notes and add them to docs
 [ ] build a new wheel and push to pypi 
 
+How to release a pacakge (ie todoinator)
+
+* have git repo clean 
+* bump version
+* push to pypi
+
 
 """
 
 import docopt
 import semver
 import os
+import subprocess
 
 def bump_version(repopath):
     """Visit `repopath` and find a VERSION file, 
@@ -45,6 +52,26 @@ def bump_version(repopath):
         
     print("TO bump patch use {}".format(nextver))
 
+def push_to_pypi(repopath):
+    """
+* sudo pip install twine
+ Install to test location
+ sudo python setup.py bdist_wheel 
+ python -m twine upload --repository-url=https://test.pypi.org/legacy/ dist/<nameofwheel>
 
+ (username and password - ignore kde wallet request?)
+
+
+real repositry is upload.pypi.org
+
+
+    """
+    #bump version ok
+    #rm-rf build/ dist/
+    #python setup.py bdist_wheel
+    #python -m twine upload --repository-url=https://upload.pypi.org/legacy/ dist/<nameofwheel>
+    pass
+
+    
 if __name__ == '__main__':
-    bump_version("/var/projects/mikado-core")
+    bump_version("/var/projects/todoinator")
