@@ -6,6 +6,9 @@ help pushout and release python packages. It needs to work with mkrepo
 and somehow 'validate and clean up' packages to meet best practise, and
 will need to use twine to push code up to pypi and push changes to git.
 
+
+
+
 Validation checks
 -----------------
 
@@ -50,7 +53,7 @@ def bump_version(repopath):
     except ValueError:
         print("The version in {} {} is not valid semver".format(versionpath, ver))
         
-    print("TO bump patch use {}".format(nextver))
+    print("Not yet implemented - To bump patch use {}".format(nextver))
 
 def push_to_pypi(repopath):
     """
@@ -72,6 +75,20 @@ real repositry is upload.pypi.org
     #python -m twine upload --repository-url=https://upload.pypi.org/legacy/ dist/<nameofwheel>
     pass
 
+docopt_msg = '''
+Usage:
+    releaseinator.py bump <packagepathroot> 
+    releaseinator.py pushToPyPi <packagepathroot>
+
+    releaseinator.py (-h | --help )
+
+Options:
+    -h --help    Show this screen
+
+
+'''
     
 if __name__ == '__main__':
-    bump_version("/var/projects/todoinator")
+    args = docopt.docopt(docopt_msg)
+    if args['bump']:
+        bump_version(args['<packagepathroot>'])
